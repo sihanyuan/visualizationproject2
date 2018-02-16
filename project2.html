@@ -37,7 +37,7 @@ svg {
 }
 
 .label {
-  -webkit-transition: fill 125ms linear;  //把鼠标指针放到div元素上，其宽度会从 100px 逐渐变为 300px：
+  -webkit-transition: fill 125ms linear;  
 }
 
 .active .label:not(.inactive) {
@@ -66,7 +66,7 @@ var margin = {top: 30, right: 40, bottom: 20, left: 80},
 var dimensions = [
   {
     name: "Name",
-    scale: d3.scale.ordinal().range([0,height]),
+    scale: d3.scale.ordinal().range([height,0]),
     type: String
   },
   {
@@ -105,14 +105,14 @@ var dimensions = [
     type: Number
   },
   {
-    name: "Very Good Health State",
+    name: "Very Good Health",
     scale: d3.scale.linear().range([height, 0]),  //sqrt可能都要改成linear才能用
     type: Number
   }
 
 ];
 
-var x = d3.scale.ordinal()  //应该是根据dimension的元素数量来把整个宽度占满。我不是很确定这一步是干什么。存疑
+var x = d3.scale.ordinal()  //应该是根据dimension的元素数量来把整个宽度占满
     .domain(dimensions.map(function(d) { return d.name; })) //将每一个dimension的名字返回
     .rangePoints([0, width]);
 
@@ -128,9 +128,9 @@ var svg = d3.select("body").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //tranlsate(a,b)
 
-var dimension = svg.selectAll(".dimension") //？？？创建dimension的类然后一个一个填进去和dimensions里的元素对应
+var dimension = svg.selectAll(".dimension") //创建dimension的类然后一个一个填进去和dimensions里的元素对应,创造这么多group
     .data(dimensions)
-  .enter().append("g")
+    .enter().append("g")
     .attr("class", "dimension")
     .attr("transform", function(d) { return "translate(" + x(d.name) + ")"; });//translate函数一定要稍微看一下。程序看不懂
 
@@ -140,7 +140,9 @@ d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", functi
   dimensions.forEach(function(dimension) {
     dimension.scale.domain(dimension.type === Number
         ? d3.extent(data, function(d) { return +d[dimension.name]; })//a?b:c 的语句 
-        : data.map(function(d) { return d[dimension.name]; }).sort());
+        //d3.extent()它可以直接返回数组自然排序的最小值和最大值，
+                           
+        : data.map(function(d) { return d[dimension.name]; }).sort()); //如果type不是number（亦即为国家名时）
   });
 
   svg.append("g")
@@ -159,24 +161,25 @@ d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", functi
 
   dimension.append("g")
       .attr("class", "axis")
-      .each(function(d) { d3.select(this).call(yAxis.scale(d.scale)); })
-    .append("text")
+      .each(function(d) { d3.select(this).call(yAxis.scale(d.scale)); }) //用每个元素自己的比例尺
+      .append("text")
       .attr("class", "title")
       .attr("text-anchor", "middle")
-      .attr("y", -9)
+      .attr("y", -8)
       .text(function(d) { return d.name; });
 
   // Rebind the axis data to simplify mouseover.
   svg.select(".axis").selectAll("text:not(.title)")
       .attr("class", "label")
-      .data(data, function(d) { return d.name || d; });
+      .data(data, function(d) { return d.name /*|| d;*/ });
 
   var projection = svg.selectAll(".axis text,.background path,.foreground path")
       .on("mouseover", mouseover)
       .on("mouseout", mouseout);
 
   function mouseover(d) {
-    svg.classed("active", true);
+   //selection.classed(name,【value】)--value参数可选，如果没有指定，则返回与name参数匹配的第一个非空元素是否绑定了指定的CSS类，true表示绑定，false表示未绑定。如果value指定了的话，就是为selection添加/删除CSS类
+    svg.classed("active", true);  
     projection.classed("inactive", function(p) { return p !== d; });
     projection.filter(function(p) { return p === d; }).each(moveToFront);
   }
@@ -190,7 +193,6 @@ d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", functi
     this.parentNode.appendChild(this);
   }
 });
-
 function draw(d) {
   return line(dimensions.map(function(dimension) {
     return [x(dimension.name), dimension.scale(d[dimension.name])];
