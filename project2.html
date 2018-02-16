@@ -23,7 +23,7 @@ svg {
   stroke-width: 1.5px;
 }
 
-.axis .title {
+.axis.title {
   font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
@@ -59,14 +59,14 @@ svg {
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
 
-var margin = {top: 30, right: 40, bottom: 20, left: 200},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 30, right: 40, bottom: 20, left: 80},
+    width = 1060 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
 var dimensions = [
   {
     name: "Name",
-    scale: d3.scale.ordinal().range([height,0]),
+    scale: d3.scale.ordinal().range([0,height]),
     type: String
   },
   {
@@ -126,7 +126,7 @@ var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //+号干什么的？
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //tranlsate(a,b)
 
 var dimension = svg.selectAll(".dimension") //？？？创建dimension的类然后一个一个填进去和dimensions里的元素对应
     .data(dimensions)
