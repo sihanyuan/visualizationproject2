@@ -140,9 +140,9 @@ d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", functi
   dimensions.forEach(function(dimension) {
     dimension.scale.domain(dimension.type === Number
         ? d3.extent(data, function(d) { return +d[dimension.name]; })//a?b:c 的语句 
-        //d3.extent()它可以直接返回数组自然排序的最小值和最大值，
+        //d3.extent()它可以直接返回数组自然排序的最小值和最大值，如果type是number那就返回名字
                            
-        : data.map(function(d) { return d[dimension.name]; }).sort()); //如果type不是number（亦即为国家名时）
+        : d3.keys(dimensions[0],function(d) { return d[dimension.name]; })); //如果type不是number（亦即为国家名时）返回title
   });
 
   svg.append("g")
@@ -171,7 +171,7 @@ d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", functi
   // Rebind the axis data to simplify mouseover.
   svg.select(".axis").selectAll("text:not(.title)")
       .attr("class", "label")
-      .data(data, function(d) { return d.name /*|| d;*/ });
+      .data(data, function(d) { return d.name || d; });
 
   var projection = svg.selectAll(".axis text,.background path,.foreground path")
       .on("mouseover", mouseover)
