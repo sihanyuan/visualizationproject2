@@ -1,13 +1,18 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="utf-8">
 </head>
 <title>visualization for 34 countries</title>
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Map Projections</title>
 <style>
 
 svg {
-  font: 9px sans-serif;
+  font: 10px sans-serif;
 }
 
 .background path {
@@ -23,8 +28,8 @@ svg {
   stroke-width: 1.5px;
 }
 
-.axis.title {
-  font-size: 11px;
+.axis .title {
+  font-size: 7px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -33,116 +38,131 @@ svg {
 .axis path {
   fill: none;
   stroke: #000;
-  shape-rendering: crispEdges;  //保证数轴和刻度线精确到像素级
+  shape-rendering: crispEdges;
 }
 
-.label {
-  -webkit-transition: fill 125ms linear;  
+
+ .label {
+  -webkit-transition: fill 125ms linear;
 }
 
 .active .label:not(.inactive) {
-  font-weight: bold; 
+      font-weight: bold;
+      font-size: 12px;
 }
+    
+ 
 
 .label.inactive {
-  fill: #ccc; //如果是inactive那就是暗下去的
+  fill: #ccc;
 }
 
 .foreground path.inactive {
   stroke: #ccc;
-  stroke-opacity: .5; //指定了当前对象的不透明度。默认值是1
+  stroke-opacity: .5;
   stroke-width: 1px;
 }
 
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
 
+//d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", function(error, data)
+//<script src="http://d3js.org/d3.v3.min.js" charset="utf-8">     
+    
 var margin = {top: 30, right: 40, bottom: 20, left: 80},
     width = 1060 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
 var dimensions = [
-  {
+  
+    {
     name: "Name",
-    scale: d3.scale.ordinal().range([height,0]),
+    scale: d3.scale.ordinal().rangePoints([0, height]),
     type: String
   },
-  {
+  
+    {
     name: "Family Importance",
-    scale: d3.scale.linear().range([height, 0]),
+    scale: d3.scale.linear().range([0, height]),
     type: Number
   },
-  {
+  
+    {
     name: "Friends Importance",
     scale: d3.scale.linear().range([height, 0]),
     type: Number
   },
-  {
+  
+    {
     name: "Work Importance",
-    scale: d3.scale.linear().range([height, 0]),  //sqrt可能都要改成linear才能用
+    scale: d3.scale.linear().range([height, 0]),
     type: Number
   },
-  {
+ 
+    {
     name: "Leisure Time Importance",
     scale: d3.scale.linear().range([height, 0]),
     type: Number
   },
-  {
+    
+    
+    {
     name: "Think of Life Often",
-    scale: d3.scale.linear().range([height, 0]),  //sqrt可能都要改成linear才能用
+    scale: d3.scale.linear().range([height, 0]),
     type: Number
-  },
-  {
+    },
+    
+     {
     name: "Proud of Nationality",
-    scale: d3.scale.linear().range([height, 0]),  //sqrt可能都要改成linear才能用
+    scale: d3.scale.linear().range([height, 0]),
     type: Number
-  },
-  {
+  }, 
+    
+      {
     name: "Completely Satisfied with Life",
-    scale: d3.scale.linear().range([height, 0]),  //sqrt可能都要改成linear才能用
+    scale: d3.scale.linear().range([height, 0]),
     type: Number
   },
-  {
+    
+      {
     name: "Very Good Health",
-    scale: d3.scale.linear().range([height, 0]),  //sqrt可能都要改成linear才能用
+    scale: d3.scale.linear().range([height, 0]),
     type: Number
   }
-
+    
 ];
 
-var x = d3.scale.ordinal()  //应该是根据dimension的元素数量来把整个宽度占满
-    .domain(dimensions.map(function(d) { return d.name; })) //将每一个dimension的名字返回
+var x = d3.scale.ordinal()
+    .domain(dimensions.map(function(d) { return d.name; }))
     .rangePoints([0, width]);
 
 var line = d3.svg.line()
-    .defined(function(d) { return !isNaN(d[1]); }); //如果name里都不是数字那就开始画线？
+    .defined(function(d) { return !isNaN(d[1]); });
 
-var yAxis = d3.svg.axis() //调用函数形成一个坐标轴
-    .orient("left"); //表示刻度显示在左侧
+var yAxis = d3.svg.axis()
+    .orient("left");
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); //tranlsate(a,b)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var dimension = svg.selectAll(".dimension") //创建dimension的类然后一个一个填进去和dimensions里的元素对应,创造这么多group
+var dimension = svg.selectAll(".dimension")
     .data(dimensions)
-    .enter().append("g")
+  .enter().append("g")
     .attr("class", "dimension")
-    .attr("transform", function(d) { return "translate(" + x(d.name) + ")"; });//translate函数一定要稍微看一下。程序看不懂
+    .attr("transform", function(d) { return "translate(" + x(d.name) + ")"; });
 
-d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", function(error, data) {
+d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", function(error, data){
   if (error) throw error;
 
   dimensions.forEach(function(dimension) {
     dimension.scale.domain(dimension.type === Number
-        ? d3.extent(data, function(d) { return +d[dimension.name]; })//a?b:c 的语句 
-        //d3.extent()它可以直接返回数组自然排序的最小值和最大值，如果type是number那就返回名字
-                           
-        : d3.keys(dimensions[0],function(d) { return d[dimension.name]; })); //如果type不是number（亦即为国家名时）返回title
+        ? d3.extent(data, function(d) { return +d[dimension.name]; })
+        : data.map(function(d) { return d[dimension.name]; }).sort());
   });
 
   svg.append("g")
@@ -161,25 +181,24 @@ d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", functi
 
   dimension.append("g")
       .attr("class", "axis")
-      .each(function(d) { d3.select(this).call(yAxis.scale(d.scale)); }) //用每个元素自己的比例尺
+      .each(function(d) { d3.select(this).call(yAxis.scale(d.scale)); })
       .append("text")
       .attr("class", "title")
       .attr("text-anchor", "middle")
-      .attr("y", -8)
+      .attr("y", -9)
       .text(function(d) { return d.name; });
 
   // Rebind the axis data to simplify mouseover.
   svg.select(".axis").selectAll("text:not(.title)")
       .attr("class", "label")
-      .data(data, function(d) { return d.name || d; });
+         .data(data, function(d) { return d.name || d; });
 
   var projection = svg.selectAll(".axis text,.background path,.foreground path")
       .on("mouseover", mouseover)
       .on("mouseout", mouseout);
 
   function mouseover(d) {
-   //selection.classed(name,【value】)--value参数可选，如果没有指定，则返回与name参数匹配的第一个非空元素是否绑定了指定的CSS类，true表示绑定，false表示未绑定。如果value指定了的话，就是为selection添加/删除CSS类
-    svg.classed("active", true);  
+    svg.classed("active", true);
     projection.classed("inactive", function(p) { return p !== d; });
     projection.filter(function(p) { return p === d; }).each(moveToFront);
   }
@@ -193,15 +212,16 @@ d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", functi
     this.parentNode.appendChild(this);
   }
 });
+
 function draw(d) {
   return line(dimensions.map(function(dimension) {
     return [x(dimension.name), dimension.scale(d[dimension.name])];
   }));
 }
-
 </script>
-</body>    
-   
+</body>
+
+
     
 <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
