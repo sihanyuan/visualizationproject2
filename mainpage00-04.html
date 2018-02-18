@@ -196,7 +196,7 @@ var dimension = svg.selectAll(".dimension")
     .attr("class", "dimension")
     .attr("transform", function(d) { return "translate(" + x(d.name) + ")"; });
 
-d3.csv("https://sihanyuan.github.io/visualizationproject2/05to09csv.csv", function(error, data){
+d3.csv("https://sihanyuan.github.io/visualizationproject2/00to04csv.csv", function(error, data){
   if (error) throw error;
 
     console.log(data[0])
