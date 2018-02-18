@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 </head>
-<title>visualization for 34 countries</title>
+<title>visualization for China for 20 years</title>
 
 
 <style>
@@ -63,10 +63,51 @@ svg {
 
 </style>
 <body>
-    
+    <div class = "row">
+    <div class = "column1 col-md-12 text-center">
     <h4 class = "title text-center">THE STATISTICS OF CHINA</h4>
+    </div>
+            </div>
+<div class ="row guide">
+       <div class = "column1 col-md-3 text-center">
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage10-14.html">2010-2014</a>
+       </div> 
+        
+       <div class = "column1 col-md-3 text-center">
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage05-09.html">2005-2009</a>
+       </div> 
+     
+       <div class = "column1 col-md-3 text-center">
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage00-04.html">2000-2004</a>
+       </div> 
+     
+       <div class = "column1 col-md-3 text-center">
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage95-99.html">1995-1999</a>
+       </div>
+    <br>  
+</div>
+        
+        <div class = "row">
+    
+       <div class = "column1 col-md-9">
+            <div id = "graph"></div>
+       </div>
+   
+       <div class = "column1 col-md-3">
+            <div id = "description">
+                <br>
+                <p>this is an </p>
+            </div>
+           <br>
 
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    
+       </div>
+            
+
+        </div>
+
+
+<script src="https://sihanyuan.github.io/visualizationproject2/d3.min.js" charset="utf-8"></script>
 <script>
 
 //d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", function(error, data)
@@ -147,7 +188,7 @@ var line = d3.svg.line()
 var yAxis = d3.svg.axis()
     .orient("left");
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#graph").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -234,8 +275,8 @@ function draw(d) {
 
 
     
-<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>  
+<link href="https://sihanyuan.github.io/visualizationproject2/bootstrap.min.css" rel="stylesheet">
+<script src="https://sihanyuan.github.io/visualizationproject2/jquery.min.js"></script>
+<script src="https://sihanyuan.github.io/visualizationproject2/bootstrap.min.js"></script>  
     
 </html>
