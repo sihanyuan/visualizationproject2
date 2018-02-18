@@ -60,6 +60,11 @@ svg {
   stroke-width: 1px;
 }
     
+        #description{
+            font: 14px sans-serif;
+            color:rgb(76, 105, 157);
+    }  
+    
 
 </style>
 <body>
@@ -71,43 +76,58 @@ svg {
     </div>
 </div>
 <div class ="row guide">
-       <div class = "column1 col-md-3 text-center">
+       <div class = "column1 col-md-3">
            <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage10-14.html">2010-2014</a>
        </div> 
         
-       <div class = "column1 col-md-3 text-center">
+       <div class = "column1 col-md-3">
            <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage05-09.html">2005-2009</a>
        </div> 
      
-       <div class = "column1 col-md-3 text-center">
+       <div class = "column1 col-md-3">
            <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage00-04.html">2000-2004</a>
        </div> 
      
-       <div class = "column1 col-md-3 text-center">
+       <div class = "column1 col-md-3">
            <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage95-99.html">1995-1999</a>
        </div>
     <br>  
 </div>
        
-
 <div class = "row">
     
-       <div class = "column1 col-md-9">
+       <div class = "column1 col-md-10">
             <div id = "graph"></div>
        </div>
    
-       <div class = "column1 col-md-3">
-            <div id = "description">
+       <div class = "column2 col-md-2">
+            <div id = "description" style = "padding:12px">
                 <br>
-                <p>this is an </p>
-            </div>
-           <br>
-            <a href ="https://sihanyuan.github.io/visualizationproject2/china-parallel.html">CHINA</a> 
-    
+
+                <p>I observed several things which are interesting.</p>
+                <p>
+                During the period of 2010 to 2014, we can see that Mexican value work most among all these countries,  yet they have highest percentage of completely satisfied with life. People in Netherland, the opposite - they value work least but still not satisfied with life. What's more, the Mexican always ranked first in satisfaction of life during 20 years.
+                </p>
+                <p>
+                Chinese valued leisure least during 1999 to 2005, but the latest data showed that leisure time become more valuable for them now.
+                </p>
        </div>
-
-
+    </div>
 </div>
+    
+    <div class = "row2">
+    <div class = "column1 col-md-12">
+         <a href ="https://sihanyuan.github.io/visualizationproject2/china-parallel.html">CHINA</a> 
+            <div id = "description">
+                
+                <p>Due to the time limit I only did one country of the timeline changing and you can see that when click "CHINA" above. What surprises me is that the importance of work keeps dropping through these 20 years.</p>
+                <p>I chose parallel coordinate to realize the visualization. Users can move mouse to highlight one specific country and see the 8 dimensions. I choose the percentage of most important/satisfied/proud of each dimension for comparation. Due to the lack of some data, the missing part of some country is reprented by 0. Also, users can click differnet period above to see different data here</p>
+            </div>
+        </div>            
+    </div>
+
+
+
 <script src="https://sihanyuan.github.io/visualizationproject2/d3.min.js" charset="utf-8"></script>
 <script>
 
