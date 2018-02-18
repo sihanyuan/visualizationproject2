@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 </head>
-<title>visualization for 34 countries</title>
+<title>visualization for 28 countries</title>
 
 
 <style>
@@ -22,7 +22,7 @@ svg {
 
 .foreground path {
   fill: none;
-  stroke: rgb(76, 105, 164);
+  stroke: rgb(200, 105, 164);
   stroke-width: 1.5px;
 }
       
@@ -66,23 +66,23 @@ svg {
     
     
 <div class = "row">
-    <h4 class = "title text-center">THE STATISTICS FOR 8 DIMENSIONS 2010-2014</h4>
+    <h4 class = "title text-center">THE STATISTICS FOR 8 DIMENSIONS 2005-2009</h4>
 </div>
 <div class ="row guide">
        <div class = "column1 col-md-3 text-center">
-           <a href ="mainpage10-14.html">2010-2014</a>
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage10-14.html">2010-2014</a>
        </div> 
         
        <div class = "column1 col-md-3 text-center">
-           <a href ="mainpage10-14.html">2005-2009</a>
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage10-14.html">2005-2009</a>
        </div> 
      
        <div class = "column1 col-md-3 text-center">
-           <a href ="mainpage10-14.html">2000-2004</a>
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage10-14.html">2000-2004</a>
        </div> 
      
        <div class = "column1 col-md-3 text-center">
-           <a href ="mainpage10-14.html">1995-1999</a>
+           <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage10-14.html">1995-1999</a>
        </div>
     <br>  
 </div>
@@ -100,7 +100,7 @@ svg {
                 <p>this is an </p>
             </div>
            <br>
-            <a href ="china-parallel.html">CHINA</a> 
+            <a href ="https://sihanyuan.github.io/visualizationproject2/china-parallel.html">CHINA</a> 
     
        </div>
 
@@ -196,7 +196,7 @@ var dimension = svg.selectAll(".dimension")
     .attr("class", "dimension")
     .attr("transform", function(d) { return "translate(" + x(d.name) + ")"; });
 
-d3.csv("https://sihanyuan.github.io/visualizationproject2/10to14csv.csv", function(error, data){
+d3.csv("https://sihanyuan.github.io/visualizationproject2/05to09csv.csv", function(error, data){
   if (error) throw error;
 
     console.log(data[0])
