@@ -76,7 +76,36 @@ svg {
     <h4 class = "title text-center">THE STATISTICS FOR 8 DIMENSIONS</h4>
     </div>
 </div>
-<div class ="row guide">
+       
+
+    
+            <div class = "rowplace">
+        <div class = "row">
+        <div class = "column1 col-md-5">
+               <div id = "description" style = "padding:12px">
+            <h6>&nbsp;&nbsp;&nbsp;ANALYTIC TRAIL OF WVS</h6>
+                
+        <img src="https://sihanyuan.github.io/visualizationproject2/WVS-HEALTH.png" alt="this page is broken...">
+                  
+        </div>
+            </div>
+            
+        <div class = "column1 col-md-7">
+               <br>
+               <br>
+        <img src="https://sihanyuan.github.io/visualizationproject2/russianhealth.png" alt="this page is broken..." width="700" >
+                                <p>
+                As we can see in the origin analysis, during 2010-2014, the health of people in Russia Federation is in bad condition, the same result as the viualization I made below.
+                </p> 
+            
+        </div>
+            
+        </div>
+
+    </div>
+    
+    
+    <div class ="row guide">
        <div class = "column1 col-md-3">
            <a href ="https://sihanyuan.github.io/visualizationproject2/mainpage10-14.html">2010-2014</a>
        </div> 
@@ -94,17 +123,19 @@ svg {
        </div>
     <br>  
 </div>
-       
+    
+    
 <div class = "row">
     
-       <div class = "column1 col-md-10">
+       <div class = "column1 col-md-9">
             <div id = "graph"></div>
        </div>
    
-       <div class = "column2 col-md-2">
+       <div class = "column2 col-md-3">
             <div id = "description" style = "padding:12px">
                 
                 <h5>ANALYTIC TRAIL</h5>
+                <p>We can see in the graph that the Russian have the worsyt health condition during 2010-2014.</p>
                 <p>The first 4 dimensions are all about how people value different parts of their life(which I am curious about), and I observed several things which are interesting.</p>
                 <p>
                 1. During the period of 2010 to 2014, we can see that Mexican value work most among all these countries,  yet they have highest percentage of completely satisfied with life. People in Netherland, the opposite - they value work least but still not satisfied with life. </p>
@@ -129,32 +160,8 @@ svg {
    
      
     </div>
-    
-        <div class = "rowplace">
-        <div class = "row">
-        <div class = "column1 col-md-5">
-               <div id = "description" style = "padding:12px">
-            <h6>&nbsp;&nbsp;&nbsp;ANALYTIC TRAIL OF WVS</h6>
-                
-        <img src="https://sihanyuan.github.io/visualizationproject2/WVS-HEALTH.png" alt="this page is broken...">
-                  
-        </div>
-            </div>
-            
-        <div class = "column1 col-md-7">
-               <br>
-               <br>
-        <img src="https://sihanyuan.github.io/visualizationproject2/russianhealth.png" alt="this page is broken..." width="700" >
-                                <p>
-                As we can see in the origin analysis, the health of people in Russia Federation is in bad condition, the same as the analysis I made above.
-                </p> 
-            
-        </div>
-            
-        </div>
 
-    </div>
-    
+
 <script src="https://sihanyuan.github.io/visualizationproject2/d3.min.js" charset="utf-8"></script>
 <script>
 
@@ -162,8 +169,8 @@ svg {
 //<script src="http://d3js.org/d3.v3.min.js" charset="utf-8">     
     
 var margin = {top: 30, right: 40, bottom: 20, left: 80},
-    width = 1060 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 960 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
 
 var dimensions = [
   
